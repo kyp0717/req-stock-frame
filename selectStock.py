@@ -1,28 +1,54 @@
 
-
+from adt import adt, Case
+from dataclasses import dataclass
+import typing as T
 
 
 stockList = getPreSelectedStocks()
 
 ### Analysis of Pre-Selected Stock List
 ### define stock characteristics
-class StkBehavior:
-    deltaPrevious: float
-    deltaVolume: float
+class Behavior:
+    prevClose: float
+    beta: float
 
-Stable: boolean
 
-def isStkStable(sb: StkBehavior) -> Stable:
+def isStkStable(stk: ticker) -> BehaviorStk:
     pass
 
 
-## class to capture stock stability list
-class StkStability:
-    stability: pd.DataFrame
+##  Stock Class
+@adt
+class BehaviorStk:
+    LATENT: Case 
+    STABLE: Case
+    ACTIVE: Case
 
 
-###  Analysis of Sector
-class SectorBehavior:
+###  Sector Class
+@adt
+class BehaviorStr:
+    CONCENTRATED: Case
+    DISPERSE: Case
+    UNCERTAIN: Case
+
+### Market Class
+@adt
+class BehaviorMkt:
+    RANDOM: Case 
+    NONRANDOM: Case
+    UNCERTAIN: Case
+
+### Trend Class
+@adt
+class Trend:
+    UP: Case
+    DOWN: Case
+
+
+
+
+
     
 
 
