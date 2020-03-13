@@ -36,13 +36,15 @@ def triage(p: Portfolio, conn) -> Portfolio:
 
 
 ## New Function with dataclass and hints define
-mktStat: pd.DataFrame
+## Market stock data time series in long format
+## data store in dataframe
+marketTS: pd.DataFrame
 @dataclass
 class Trend:
     Uptick: float    # percentage of stock trending up
     Downtick: float  # percentage of stocks trending down
     
-def findTrend(mks: mktStat) -> Trend:
+def findTrend(mts: marketTS) -> Trend:
     pass
 
 ## New Function
@@ -60,11 +62,11 @@ def runActiveAlgo(p: Portfolio) -> None:
     pass
 
 
-## Stock Selection process
-## Find the stock and corresponding algo
-TradeStrategy: List[Tuple[ticker,algo]] 
-def selectStock(sp: SP500) -> TargetStrategy:
-    pass
+   
+    
+
+
+
 
 
 
