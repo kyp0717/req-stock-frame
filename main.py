@@ -34,19 +34,6 @@ def triage(p: Portfolio, conn) -> Portfolio:
     return p2
 
 
-
-## New Function with dataclass and hints define
-## Market stock data time series in long format
-## data store in dataframe
-marketTS: pd.DataFrame
-@dataclass
-class Trend:
-    Uptick: float    # percentage of stock trending up
-    Downtick: float  # percentage of stocks trending down
-    
-def findTrend(mts: marketTS) -> Trend:
-    pass
-
 ## New Function
 ## This function is a side affect
 ## It will execute the algo and return nothing

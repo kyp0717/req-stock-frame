@@ -2,7 +2,7 @@
 from adt import adt, Case
 from dataclasses import dataclass
 import typing as T
-
+import enum 
 
 stockList = getPreSelectedStocks()
 
@@ -23,29 +23,6 @@ class BehaviorStk:
     LATENT: Case 
     STABLE: Case
     ACTIVE: Case
-
-
-###  Sector Class
-@adt
-class BehaviorStr:
-    CONCENTRATED: Case
-    DISPERSE: Case
-    UNCERTAIN: Case
-
-### Market Class
-@adt
-class BehaviorMkt:
-    RANDOM: Case 
-    NONRANDOM: Case
-    UNCERTAIN: Case
-
-### Trend Class
-@adt
-class Trend:
-    UP: Case
-    DOWN: Case
-
-
 
 
 

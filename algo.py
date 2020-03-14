@@ -1,17 +1,12 @@
 
+import behavior
 
 # reconciliation with portfolio is complete
 # ready to run algo
-def randomAlgo(tk: ticker, stat: marketStatus) -> None:
-    pnl = getPnL(tk)
+def randomAlgo(mkt: MarketBehavior, sector: SectorBehavior) -> Function:
+    if mkt == random and sector == random: return ...
 
-    # check market status
-    if stat == 'random' and pnl > 40.0:
-       sell(tk)
-   elif stat == 'random' and pnl < 40.0:
-       pass
-    elif stat != 'random' or pnl < 40.0
-        sell(tk)
+
 
 
 
