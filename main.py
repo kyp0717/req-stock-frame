@@ -3,7 +3,9 @@ import statsmodels.api as sm
 from scipy import stats
 import TSprice
 from typing import Tuple, List, Dict
-from dataclasses import dataclass
+import behavior
+import algo
+
 
 ## helper function to be used with pandas apply
 def linearRegress(x):
@@ -33,39 +35,13 @@ def triage(p: Portfolio, conn) -> Portfolio:
     p2 = reconcile(p)
     return p2
 
-
-## New Function
-## This function is a side affect
-## It will execute the algo and return nothing
-## No need to define type
-def runAlgo(t: Trend) -> None:
-    pass
-
-## New Function
-## This function is a side affect
-## It will execute the algo and return nothing
-## No need to define type
-def runActiveAlgo(p: Portfolio) -> None:
-    pass
-
-
    
-    
-
-
-
-
-
-
-l = ['AAPL','AMZN','TSLA']
 market_close = datetime.datetime.now().replace(hour=16, minute=0) 
 pfl = Portfolio[]
 while datetime.datetime.now() < market_close:
     # first thing --- check pnl for each stock in portfolio
     # sell any stock with 5% or more loss:
     pfl = triage(pfl, ibxconn)
-
-    stockList = selectStocks()
 
     # step 2: get the dataframe with 5 time points
     # use this list for now; implement stock seletion later
@@ -74,14 +50,26 @@ while datetime.datetime.now() < market_close:
     # perform regression to get market status
     mktstatus= df.groupby('ticker').apply(linearRegress)
 
+    ## assess market condition at market and sector level
+    mktBh = market.AssessMarket(mktStat)
+    sectorBh = market.AssessSector(mktStat)
+
+    ## find stock to trade
+    stableStock = stock.getStableStk(mktStat)
+
+    ## find the algo type base on the market and sector condition
+    algo = deriveAlgo(mktBh, sectorBh)
+    ## combine the stock and algo to generate a function
+    algoFn = buildAlgo(algo, stablStock)
+
+    ## add algo to portfolio
+    pfl = pfl.addAlgo(algoFn)
+
+
     # all algos will make 2 decisions: keep or sell the stock
     # rerun all algo in the portfolio
-    runActiveAlgos(pfl)
+    runAlgos(pfl)
 
-    # this is self explanatory
-    trend = findTrend(mktstatus)
-    algo = runAlgo(trend)
-    pfl = plf.addAlgo(algo)
 
     
 
