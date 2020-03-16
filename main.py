@@ -58,9 +58,9 @@ while datetime.datetime.now() < market_close:
     stableStock = stock.getStableStk(mktStat)
 
     ## find the algo type base on the market and sector condition
-    algo = deriveAlgo(mktBh, sectorBh)
+    algotype = deriveAlgo(mktBh, sectorBh)
     ## combine the stock and algo to generate a function
-    algoFn = buildAlgo(algo, stablStock)
+    algoFn = buildAlgo(algotype, stablStock)
 
     ## add algo to portfolio
     pfl = pfl.addAlgo(algoFn)

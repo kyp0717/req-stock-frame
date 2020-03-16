@@ -15,7 +15,7 @@ def assessMarket(mktTS: MarketTS) -> Behavior:
 
 ###  Sector Class
 @unique
-class Sector:
+class Sector(enum.Enum):
     healthcare: 1
     technology: 2
     ...
