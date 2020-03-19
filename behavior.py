@@ -5,12 +5,13 @@ import enum
 ### Market Class
 @unique
 class Behavior(enum.Enum):
-    random: 1
-    nonrandom: 2
-    uncertain: 3
+    Random: 1
+    SellOff: 2
+    Rally: 3
+    Unknown: 4
 
 def assessMarket(mktTS: MarketTS) -> Behavior:
-    pass
+
 
 
 ###  Sector Class

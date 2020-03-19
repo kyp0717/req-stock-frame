@@ -6,48 +6,30 @@ import algos
 
 algoFuncs = {
     AlgoType.Random: algos.randomFn
-    sampleAlgo,
-    otherAlgo }
+    AlgoType.SellOff: algos.sellOffFn
+    AlgoType.Rally: algos.rallyFn
+    AlgoType.Uncertain: algos.uncertainFn
+    }
 
 
 @unique
 class AlgoType(enum.Enum):
-    random: 1
-    nonrandom: 2
-    grayzone: 3
+    Random: 1
+    SellOff: 2
+    Rally: 3
+    Uncertain: 4
 
-def sampleAlgo(ticker):
-    pass
-
-
-    sampleAlgo.ticker = ticker # < you can do this
-## random algo
-def randomAlgo(tk: ticker) -> Function:
-    pass
-
-def nonRandomAlgo():
-    pass
 
 ## derive algo base on market condition
 def deriveAlgo(mkt: MarketBehavior, sector: SectorBehavior) -> AlgoType:
     pass
 
 def buildAlgo(a: AlgoType, stk: findStkFn) ->  AlgoFn:
-
-
-
-
-    
-
     #func()
     fn = partial(algoFuncs[algoType], stk)
     fn.AlgoType = a
     fn.Stock = stk
     return fn
-
-fn = buildAlgo(at, "AAPL")
-
-
 
 
 def addAlgo(agf: AlgoFn, p: Portfolio) -> Portfolio:
