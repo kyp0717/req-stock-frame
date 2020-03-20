@@ -1,12 +1,10 @@
 #! /usr/bin/env python3
 import asyncio
 from aiohttp import ClientSession
-import stock_info
 import pandas as pd
 import time
 
-# ask Chris why I cannot see base_url variable
-base_url = stock_info.base_url
+base_url = "https://query1.finance.yahoo.com/v8/finance/chart/"
 async def reqPrice(ticker:str, session) :
     'Get price, volume, and previous close for ticker'
     response = await session.get(base_url + ticker)
