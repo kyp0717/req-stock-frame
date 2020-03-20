@@ -5,6 +5,7 @@ from typing import Tuple, List, Dict
 import behavior as bh
 import algo
 import timeSeries as tsr
+import priceModels as pm
 
    
 market_close = datetime.datetime.now().replace(hour=16, minute=0) 
@@ -23,14 +24,14 @@ while datetime.datetime.now() < market_close:
     mktData = tsr.buildTimeSeries()
 
     # perform regression to get market status
-    mktslope = mktData.groupby('ticker').apply(linearRegress)
+    mktSlope = tsr.regress(mktData)
+    # mktSlope = mktData.groupby('ticker').apply(pm.linearRegress)
 
     ## assess market condition at market and sector level
-    mktBh = bh.AssessMarket(mktslope)
-    sectorBh = bh.AssessSector(mktslope)
+    mktState = bh.AssessMarket(mktSlope)
 
     ## find the algo type base on the market and sector condition
-    algotype = deriveAlgo(mktBh, sectorBh)
+    algotype = deriveAlgo(mktState)
     ## combine the stock and algo to generate a function
     algoFn = buildAlgo(algotype, stablStock)
 
