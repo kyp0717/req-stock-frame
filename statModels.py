@@ -3,6 +3,15 @@
 from scipy import stats
 from collections import OrderedDict
 
+
+## helper function to be used with pandas apply
+def linearRegress(x):
+    lr = stats.linregress(x['timepoint'].astype(int), x['price'].astype(float))
+    return lr.slope
+
+def getSlope():
+
+
 def regress(df):
     'Pivot dataframe and append regression info'
 

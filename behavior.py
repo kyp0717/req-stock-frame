@@ -1,6 +1,8 @@
 
 import enum
-
+import statModels as sm
+import timeSeries as ts
+from typing import List
 
 ### Market Class
 @unique
@@ -10,7 +12,17 @@ class Behavior(enum.Enum):
     Rally: 3
     Unknown: 4
 
-def assessMarket(mktTS: MarketTS) -> Behavior:
+
+@dataclass
+class MarketStatus:
+    Market: Behavior
+    Sector: List[Behavior]
+
+
+
+def assessMarket(mktSlope: MarketSlope) -> MarketStatus:
+
+
 
 
 
@@ -23,6 +35,8 @@ class Sector(enum.Enum):
 
 def findSector(tk: ticker) -> Sector:
     pass
+
+
 
 def assessSector(s: Sector) -> Behavior:
     pass

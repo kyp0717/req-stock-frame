@@ -1,11 +1,10 @@
 import time
 import statsmodels.api as sm 
 from scipy import stats
-import TSprice
 from typing import Tuple, List, Dict
-import behavior
+import behavior as bh
 import algo
-
+import timeSeries as tsr
 
 ## helper function to be used with pandas apply
 def linearRegress(x):
@@ -38,6 +37,10 @@ def triage(p: Portfolio, conn) -> Portfolio:
    
 market_close = datetime.datetime.now().replace(hour=16, minute=0) 
 pfl = Portfolio[]
+stkRandom = ['MSFT']
+stkSellOff = ['MSFT']
+stkRally = ['MSFT']
+
 while datetime.datetime.now() < market_close:
     # first thing --- check pnl for each stock in portfolio
     # sell any stock with 5% or more loss:
@@ -45,17 +48,14 @@ while datetime.datetime.now() < market_close:
 
     # step 2: get the dataframe with 5 time points
     # use this list for now; implement stock seletion later
-    df = TSprice.buildTimeSeries()
+    mktData = tsr.buildTimeSeries()
 
     # perform regression to get market status
-    mktstatus= df.groupby('ticker').apply(linearRegress)
+    mktslope = mktData.groupby('ticker').apply(linearRegress)
 
     ## assess market condition at market and sector level
-    mktBh = market.AssessMarket(mktStat)
-    sectorBh = market.AssessSector(mktStat)
-
-    ## find stock to trade
-    stableStock = stock.getStableStk(mktStat)
+    mktBh = bh.AssessMarket(mktslope)
+    sectorBh = bh.AssessSector(mktslope)
 
     ## find the algo type base on the market and sector condition
     algotype = deriveAlgo(mktBh, sectorBh)
@@ -64,7 +64,6 @@ while datetime.datetime.now() < market_close:
 
     ## add algo to portfolio
     pfl = pfl.addAlgo(algoFn)
-
 
     # all algos will make 2 decisions: keep or sell the stock
     # rerun all algo in the portfolio
