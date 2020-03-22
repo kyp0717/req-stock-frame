@@ -6,7 +6,7 @@ import priceModels
 
 
 ## helper function to be used with pandas apply
-def linearRegress(x):
+def linearRegress(x) -> float:
     lr = stats.linregress(x['timepoint'].astype(int), x['price'].astype(float))
     return lr.slope
 

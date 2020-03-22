@@ -22,12 +22,24 @@ class MarketStatus:
     Market: Behavior
     Sector: Dict[Behavior]
 
-def guessBehavior(slopeDF: MarketSlope) -> Behavior:
+def deriveBehavior(slopePct: float) -> Behavior:
+    if slopePct < 0.20: 
+        return Behavior.SellOff
+    elif (slopePct >= 20 and slopePct < 0.40) or (slopePct > 0.60 and slopePct <= 0.80): 
+        return Behavior.Unknown
+    elif (slopePct >= 0.40 and slopePct <= 0.60):
+        return Behavior.Random
+    elif slopePct > 0.80:
+        return Behavior.Rally
 
 
 def assessMarket(slopeDF: MarketSlope) -> MarketStatus:
-    pctUp = calcPctUpTick(slopeDF)
-    if pctUp >= 0 and pctUp < 0.20: return
+    slopePct = calcPctUpTick(slopeDF['slope'])
+    mktbehavior = deriveBehavior(slopePct)
+    
+
+
+
 
 
 

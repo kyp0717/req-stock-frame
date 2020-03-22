@@ -46,3 +46,22 @@ def buildTimeSeries(tickers:list, timepoints = 4, delay = 2) -> pd.DataFrame:
 # print(res)
 # tmp = buildTimeSeries(stxlist)
 # print(tmp)
+
+
+exchange_source_dict = {
+    'nasdaq': 'https://old.nasdaq.com/screening/companies-by-name.aspx?letter=0&exchange=nasdaq&render=download',
+    'amex': 'https://old.nasdaq.com/screening/companies-by-name.aspx?letter=0&exchange=amex&render=download',    
+    'nyse': 'https://old.nasdaq.com/screening/companies-by-name.aspx?letter=0&exchange=nyse&render=download'} 
+
+
+def getSP500() -> list:
+
+
+@dataclass
+class StkData:
+    Market: pd.DataFrame
+    Sector: pd.DataFrame
+
+
+    
+

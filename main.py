@@ -4,7 +4,7 @@ from scipy import stats
 from typing import Tuple, List, Dict
 import behavior as bh
 import algo
-import timeSeries as tsr
+import marketData as mkt
 import priceModels as pm
 
    
@@ -21,7 +21,7 @@ while datetime.datetime.now() < market_close:
 
     # step 2: get the dataframe with 5 time points
     # use this list for now; implement stock seletion later
-    mktData = tsr.buildTimeSeries()
+    mktData = mkt.buildTimeSeries()
 
     # perform regression to get market status
     mktSlope = tsr.regress(mktData)
